@@ -6,9 +6,9 @@ import 'package:private_feed/utils/font_size.dart';
 import 'package:private_feed/utils/helper.dart';
 import 'package:private_feed/views/components/buttons.dart';
 import 'package:private_feed/views/components/textfields.dart';
-import 'package:private_feed/views/pages/name_input.dart';
+import 'package:private_feed/views/pages/enter_code.dart';
+
 import '../components/labels.dart';
-import 'package:form_field_validator/form_field_validator.dart';
 
 class GetStarted extends StatefulWidget {
   const GetStarted({super.key});
@@ -30,7 +30,7 @@ class _GetStartedState extends State<GetStarted> {
   bool _valid = false;
   _submit() {
     Navigator.push(
-        context, MaterialPageRoute(builder: (context) => NameInputPage()));
+        context, MaterialPageRoute(builder: (context) => EnterCode()));
   }
 
   @override

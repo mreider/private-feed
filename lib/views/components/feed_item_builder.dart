@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:private_feed/views/components/labels.dart';
+import 'package:private_feed/views/pages/edit_message.dart';
 
 import '../../utils/font_size.dart';
 
@@ -39,17 +40,26 @@ class _FeedItemBuilderState extends State<FeedItemBuilder> {
                 SizedBox(
                   width: 10.5,
                 ),
-                Label(
-                  text: 'Feed ${index + 1}',
-                  fontSize: FontSize.p3,
-                  fontWeight: FontWeight.w400,
-                )
+                TextButton(
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => EditMessage()));
+                  },
+                  child: Label(
+                    text: 'Feed ${index + 1}',
+                    fontSize: FontSize.p3,
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
               ],
             ),
             Row(
               children: [
                 IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => EditMessage()));
+                  },
                   icon: Icon(
                     Icons.arrow_forward_ios,
                     size: 16,

@@ -1,22 +1,22 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
+
+import 'package:private_feed/views/pages/new_message.dart';
 
 import '../../utils/all_colors.dart';
 import '../../utils/font_size.dart';
 import '../components/buttons.dart';
 import '../components/labels.dart';
 
-class Sent extends StatefulWidget {
-  const Sent({super.key});
+class InviationSent extends StatefulWidget {
+  const InviationSent({super.key});
 
   @override
-  State<Sent> createState() => _SentState();
+  State<InviationSent> createState() => _InviationSentState();
 }
 
-class _SentState extends State<Sent> {
+class _InviationSentState extends State<InviationSent> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,7 +45,10 @@ class _SentState extends State<Sent> {
                 text: 'Continue',
                 fontSize: FontSize.p3,
                 fontWeight: FontWeight.w500,
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => NewMessage()));
+                },
                 containerColor: AllColors.blue,
                 textColor: AllColors.white,
               ),

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:private_feed/utils/all_colors.dart';
 import 'package:private_feed/views/components/appbar.dart';
 import 'package:private_feed/views/components/bottom_navbar.dart';
+import 'package:private_feed/views/pages/feed_item.dart';
 import 'package:private_feed/views/pages/nav_pages/edit_profile.dart';
 import 'package:private_feed/views/pages/nav_pages/feeds_page.dart';
 import 'package:private_feed/views/pages/nav_pages/new_feed.dart';
@@ -29,18 +30,6 @@ class _FeedDashboardState extends State<FeedDashboard>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppbar(
-        elevation: 0.0,
-        title: 'My awesome feed',
-        backgroundColor: AllColors.appcolor,
-        foregroundColor: AllColors.black,
-        actionIcon: Icons.people,
-        backLeadingIcon: Icons.arrow_back_ios,
-        imageLeadingIcon: Icons.image,
-
-        onPressedImage: () {},
-        onPressedAccount: () {},
-      ),
       body: TabBarView(
         controller: _tabController,
         children: [

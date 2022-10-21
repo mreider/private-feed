@@ -4,9 +4,12 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:private_feed/views/pages/feed_item.dart';
+import 'package:page_transition/page_transition.dart';
 import '../../utils/all_colors.dart';
 import '../../utils/font_size.dart';
 
+import '../components/appbar.dart';
 import '../components/buttons.dart';
 import '../components/labels.dart';
 import '../components/select_image_viewer.dart';
@@ -35,6 +38,23 @@ class _PickProfileImageState extends State<EditMessage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: CustomAppbar(
+        elevation: 0.0,
+        title: 'My awesome feed',
+        backgroundColor: AllColors.appcolor,
+        foregroundColor: AllColors.black,
+        actionIcon: Icons.people,
+        backLeadingIcon: Icons.arrow_back_ios,
+        imageLeadingIcon: Icons.image,
+        onPressedBack: () {
+          Navigator.push(
+              context,
+              PageTransition(
+                  child: FeedItem(), type: PageTransitionType.leftToRight));
+        },
+        onPressedImage: () {},
+        onPressedAccount: () {},
+      ),
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: Padding(
@@ -43,7 +63,7 @@ class _PickProfileImageState extends State<EditMessage> {
             mainAxisSize: MainAxisSize.min,
             children: [
               SizedBox(
-                height: 116,
+                height: 25,
               ),
               Label(
                 text: 'Edit Message',
@@ -130,7 +150,7 @@ class _PickProfileImageState extends State<EditMessage> {
                 ],
               ),
               SizedBox(
-                height: 40,
+                height: 25,
               ),
               InkWell(
                 onTap: () {},

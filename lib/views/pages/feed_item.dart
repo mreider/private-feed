@@ -1,10 +1,14 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, deprecated_member_use
 
 import 'package:flutter/material.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:private_feed/utils/all_colors.dart';
 import 'package:private_feed/views/components/feed_item_builder.dart';
+import 'package:private_feed/views/pages/feed_dashboard.dart';
+import 'package:private_feed/views/pages/nav_pages/new_feed.dart';
 
 import '../../utils/font_size.dart';
+import '../components/appbar.dart';
 import '../components/labels.dart';
 
 class FeedItem extends StatefulWidget {
@@ -18,6 +22,24 @@ class _FeedItemState extends State<FeedItem> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: CustomAppbar(
+        elevation: 0.0,
+        title: 'My awesome feed',
+        backgroundColor: AllColors.appcolor,
+        foregroundColor: AllColors.black,
+        actionIcon: Icons.people,
+        backLeadingIcon: Icons.arrow_back_ios,
+        imageLeadingIcon: Icons.image,
+        onPressedBack: () {
+          Navigator.push(
+              context,
+              PageTransition(
+                  child: FeedDashboard(),
+                  type: PageTransitionType.leftToRight));
+        },
+        onPressedImage: () {},
+        onPressedAccount: () {},
+      ),
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: Column(
@@ -25,7 +47,7 @@ class _FeedItemState extends State<FeedItem> {
           mainAxisSize: MainAxisSize.min,
           children: [
             SizedBox(
-              height: 45,
+              height: 25,
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -34,15 +56,6 @@ class _FeedItemState extends State<FeedItem> {
                 children: [
                   Row(
                     children: [
-                      IconButton(
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                        icon: Icon(
-                          Icons.arrow_back_ios,
-                          size: 18,
-                        ),
-                      ),
                       Label(
                         align: TextAlign.center,
                         text: 'My Feeds',
@@ -55,10 +68,13 @@ class _FeedItemState extends State<FeedItem> {
                     height: 36,
                     width: 145,
                     child: ElevatedButton.icon(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) => NewFeed()));
+                      },
                       icon: Icon(Icons.add),
                       label: Label(
-                        text: 'NEED FEED',
+                        text: 'NEW FEED',
                         fontWeight: FontWeight.w500,
                         color: AllColors.blue,
                       ),

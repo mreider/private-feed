@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:pinput/pinput.dart';
 
@@ -5,6 +7,7 @@ import 'package:private_feed/utils/all_colors.dart';
 import 'package:private_feed/utils/font_size.dart';
 import 'package:private_feed/views/components/buttons.dart';
 import 'package:private_feed/views/components/labels.dart';
+import 'package:private_feed/views/pages/name_input.dart';
 
 class EnterCode extends StatefulWidget {
   const EnterCode({super.key});
@@ -43,7 +46,7 @@ class _GetStartState extends State<EnterCode> {
                     textStyle: TextStyle(fontSize: FontSize.h4),
                     margin: EdgeInsets.all(5),
                     width: 50,
-                    height: 70,
+                    height: 60,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(6),
                       shape: BoxShape.rectangle,
@@ -55,8 +58,13 @@ class _GetStartState extends State<EnterCode> {
                   height: 40,
                 ),
                 FillButton(
-                  text: 'Back',
-                  onPressed: () {},
+                  text: 'submit',
+                  onPressed: () {
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => NameInputPage()));
+                  },
                   containerColor: AllColors.blue,
                   textColor: AllColors.white,
                 ),

@@ -1,13 +1,16 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:private_feed/utils/all_colors.dart';
 import 'package:private_feed/utils/font_size.dart';
 import 'package:private_feed/utils/helper.dart';
 import 'package:private_feed/views/components/buttons.dart';
 import 'package:private_feed/views/components/feed_members_builder.dart';
 import 'package:private_feed/views/components/textfields.dart';
-import 'package:private_feed/views/pages/name_input.dart';
+import 'package:private_feed/views/pages/feed_item.dart';
+
+import 'package:private_feed/views/pages/invitation_sent.dart';
 import '../components/appbar.dart';
 import '../components/labels.dart';
 import '../components/members_pending_resend.dart';
@@ -28,8 +31,7 @@ class _GetStartedState extends State<FeedMembers> {
   bool _valid = false;
 
   _submit() {
-    Navigator.push(
-        context, MaterialPageRoute(builder: (context) => NameInputPage()));
+    Navigator.push(context, MaterialPageRoute(builder: (context) => InviationSent()));
   }
 
   @override
@@ -44,7 +46,10 @@ class _GetStartedState extends State<FeedMembers> {
         backLeadingIcon: Icons.arrow_back_ios,
         imageLeadingIcon: Icons.image,
         onPressedBack: () {
-          Navigator.pop(context);
+          Navigator.push(
+              context,
+              PageTransition(
+                  child: FeedItem(), type: PageTransitionType.leftToRight));
         },
         onPressedImage: () {},
         onPressedAccount: () {},
@@ -149,16 +154,11 @@ class _GetStartedState extends State<FeedMembers> {
                 ),
                 MemberPendingResend(),
                 FeedMembersListSeparated(),
-                Divider(),
-                SizedBox(
-                  height: 100,
-                ),
                 Divider(
-                  indent: 2,
-                  color: AllColors.danger,
+                  thickness: 2,
                 ),
                 SizedBox(
-                  height: 50,
+                  height: 30,
                 ),
                 Center(
                   child: Label(
@@ -189,6 +189,9 @@ class _GetStartedState extends State<FeedMembers> {
                       align: TextAlign.center,
                       text:
                           'The group and messages will be\n deleted.This is permanent. Can not be\n undone.'),
+                ),
+                SizedBox(
+                  height: 60,
                 ),
               ],
             ),

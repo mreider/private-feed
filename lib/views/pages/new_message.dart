@@ -4,9 +4,14 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:page_transition/page_transition.dart';
+import 'package:private_feed/views/pages/feed_dashboard.dart';
+import 'package:private_feed/views/pages/feed_item.dart';
+import 'package:private_feed/views/pages/feed_members.dart';
 import '../../utils/all_colors.dart';
 import '../../utils/font_size.dart';
 
+import '../components/appbar.dart';
 import '../components/buttons.dart';
 import '../components/labels.dart';
 import '../components/select_image_viewer.dart';
@@ -35,6 +40,28 @@ class _PickProfileImageState extends State<NewMessage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: CustomAppbar(
+        elevation: 0.0,
+        title: 'My awesome feed',
+        backgroundColor: AllColors.appcolor,
+        foregroundColor: AllColors.black,
+        actionIcon: Icons.people,
+        backLeadingIcon: Icons.arrow_back_ios,
+        imageLeadingIcon: Icons.image,
+        onPressedImage: () {},
+        onPressedAccount: () {
+          Navigator.push(
+              context,
+              PageTransition(
+                  child: FeedItem(), type: PageTransitionType.leftToRight));
+        },
+        onPressedBack: () {
+          Navigator.push(
+              context,
+              PageTransition(
+                  child: FeedMembers(), type: PageTransitionType.leftToRight));
+        },
+      ),
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: Padding(
@@ -83,14 +110,17 @@ class _PickProfileImageState extends State<NewMessage> {
                 height: 20,
               ),
               FillButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => FeedDashboard()));
+                },
                 text: 'Submit',
                 containerColor: AllColors.blue,
                 textColor: AllColors.white,
               ),
-               SizedBox(
-          height: 25,
-        ),
+              SizedBox(
+                height: 25,
+              ),
             ],
           ),
         ),

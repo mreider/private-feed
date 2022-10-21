@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:private_feed/views/pages/nav_pages/feeds_page.dart';
-import 'package:private_feed/views/pages/feed_dashboard.dart';
-import 'package:private_feed/views/pages/feed_item.dart';
-import 'package:private_feed/views/pages/get_started.dart';
+
 import 'package:private_feed/views/pages/splash_screen.dart';
 
 void main() {

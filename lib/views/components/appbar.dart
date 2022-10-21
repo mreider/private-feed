@@ -33,14 +33,17 @@ class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       foregroundColor: foregroundColor,
       elevation: elevation,
-      leadingWidth: 0,
-      leading: onPressedBack!=null?Padding(
-        padding: const EdgeInsets.only(left: 25),
-        child: IconButton(
-          onPressed: onPressedBack,
-          icon: Icon(backLeadingIcon),
-        ),
-      ):SizedBox(),
+      //when used ledadingWidth > backLeading Icon not working
+      // leadingWidth: 0,
+      leading: onPressedBack != null
+          ? Padding(
+              padding: const EdgeInsets.only(left: 25),
+              child: IconButton(
+                onPressed: onPressedBack,
+                icon: Icon(backLeadingIcon),
+              ),
+            )
+          : SizedBox(),
       title: Row(
         children: [
           Expanded(

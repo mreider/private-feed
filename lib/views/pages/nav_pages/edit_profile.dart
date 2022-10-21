@@ -9,9 +9,11 @@ import 'package:private_feed/views/components/edit_profile_dropdown.dart';
 import '../../../utils/all_colors.dart';
 import '../../../utils/font_size.dart';
 
+import '../../components/appbar.dart';
 import '../../components/buttons.dart';
 import '../../components/labels.dart';
 import '../../components/select_image_viewer.dart';
+import '../feed_item.dart';
 
 class EditProfile extends StatefulWidget {
   const EditProfile({Key? key}) : super(key: key);
@@ -38,6 +40,20 @@ class _PickProfileImageState extends State<EditProfile> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        appBar: CustomAppbar(
+          elevation: 0.0,
+          title: 'My awesome feed',
+          backgroundColor: AllColors.appcolor,
+          foregroundColor: AllColors.black,
+          actionIcon: Icons.people,
+          backLeadingIcon: Icons.arrow_back_ios,
+          imageLeadingIcon: Icons.image,
+          onPressedImage: () {},
+          onPressedAccount: () {
+            Navigator.push(
+                context, MaterialPageRoute(builder: (context) => FeedItem()));
+          },
+        ),
         body: SingleChildScrollView(
           scrollDirection: Axis.vertical,
           child: Padding(
@@ -47,13 +63,15 @@ class _PickProfileImageState extends State<EditProfile> {
               mainAxisSize: MainAxisSize.min,
               children: [
                 SizedBox(
-                  height: 39,
+                  height: 25,
                 ),
-                Label(
-                  align: TextAlign.center,
-                  text: 'Edit Profile',
-                  fontSize: FontSize.h3,
-                  fontWeight: FontWeight.w600,
+                Center(
+                  child: Label(
+                    align: TextAlign.center,
+                    text: 'Edit Profile',
+                    fontSize: FontSize.h3,
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
                 SizedBox(
                   height: 45,
@@ -154,16 +172,9 @@ class _PickProfileImageState extends State<EditProfile> {
                 SizedBox(
                   height: 50,
                 ),
-                Divider(
-                  indent: 2,
-                  color: AllColors.danger,
-                ),
-                SizedBox(
-                  height: 50,
-                ),
                 EditProfileDropdown(),
                 SizedBox(
-                  height: 70,
+                  height: 40,
                 ),
                 Center(
                   child: Label(

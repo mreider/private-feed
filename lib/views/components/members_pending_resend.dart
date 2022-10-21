@@ -64,7 +64,9 @@ class MemberPendingResend extends StatelessWidget {
         SizedBox(
           height: 15,
         ),
-        Divider(),
+        Divider(
+          thickness: 2,
+        ),
       ],
     );
   }

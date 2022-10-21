@@ -1,16 +1,21 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:private_feed/views/components/textfields.dart';
+import 'package:private_feed/views/pages/feed_item.dart';
+import 'package:private_feed/views/pages/feed_members.dart';
 import '../../../utils/all_colors.dart';
 import '../../../utils/font_size.dart';
 
+import '../../components/appbar.dart';
 import '../../components/buttons.dart';
 import '../../components/labels.dart';
 import '../../components/select_image_viewer.dart';
+import '../feed_dashboard.dart';
 
 class NewFeed extends StatefulWidget {
   const NewFeed({Key? key}) : super(key: key);
@@ -37,6 +42,27 @@ class _PickProfileImageState extends State<NewFeed> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        appBar: CustomAppbar(
+          elevation: 0.0,
+          title: 'My awesome feed',
+          backgroundColor: AllColors.appcolor,
+          foregroundColor: AllColors.black,
+          actionIcon: Icons.people,
+          imageLeadingIcon: Icons.image,
+          backLeadingIcon: Icons.arrow_back_ios,
+          onPressedImage: () {},
+          onPressedAccount: () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => const FeedItem()));
+          },
+          onPressedBack: () {
+            Navigator.push(
+                context,
+                PageTransition(
+                    child: FeedDashboard(),
+                    type: PageTransitionType.leftToRight));
+          },
+        ),
         body: SingleChildScrollView(
           scrollDirection: Axis.vertical,
           child: Padding(
@@ -46,16 +72,18 @@ class _PickProfileImageState extends State<NewFeed> {
               mainAxisSize: MainAxisSize.min,
               children: [
                 SizedBox(
-                  height: 35,
+                  height: 25,
                 ),
-                Label(
-                  align: TextAlign.center,
-                  text: 'New Feed',
-                  fontSize: FontSize.h3,
-                  fontWeight: FontWeight.w600,
+                Center(
+                  child: Label(
+                    align: TextAlign.center,
+                    text: 'New Feed',
+                    fontSize: FontSize.h3,
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
                 SizedBox(
-                  height: 20,
+                  height: 45,
                 ),
                 Padding(
                   padding: const EdgeInsets.only(left: 16),
@@ -117,12 +145,17 @@ class _PickProfileImageState extends State<NewFeed> {
                   height: 30,
                 ),
                 FillButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => FeedMembers()));
+                  },
                   text: 'Submit',
                   containerColor: AllColors.blue,
                   textColor: AllColors.white,
                 ),
-                SizedBox(height: 20,)
+                SizedBox(
+                  height: 25,
+                ),
               ],
             ),
           ),
