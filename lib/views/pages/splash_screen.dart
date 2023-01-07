@@ -1,5 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:private_feed/views/components/labels.dart';
+import 'package:private_feed/views/pages/feed_dashboard.dart';
 import 'package:private_feed/views/pages/get_started.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -28,7 +30,15 @@ class _SplashScreenState extends State<SplashScreen> {
 
   Future<void> _gotoGetStartedPage() async {
     await Future.delayed(Duration(seconds: 1));
-    Navigator.pushAndRemoveUntil(context,
-        MaterialPageRoute(builder: (context) => GetStarted()), (route) => false);
+    var user=FirebaseAuth.instance.currentUser;
+    if(user==null){
+      Navigator.pushAndRemoveUntil(context,
+          MaterialPageRoute(builder: (context) => GetStarted()), (route) => false);
+    }else{
+      Navigator.pushAndRemoveUntil(context,
+          MaterialPageRoute(builder: (context) => FeedDashboard()), (route) => false);
+    }
+
+
   }
 }

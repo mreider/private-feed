@@ -1,11 +1,14 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'dart:io';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:private_feed/views/components/custom_snackbar.dart';
 import 'package:private_feed/views/components/textfields.dart';
 import 'package:private_feed/views/components/edit_profile_dropdown.dart';
+import 'package:private_feed/views/pages/get_started.dart';
 import '../../../utils/all_colors.dart';
 import '../../../utils/font_size.dart';
 
@@ -183,6 +186,12 @@ class _PickProfileImageState extends State<EditProfile> {
                     fontWeight: FontWeight.w500,
                   ),
                 ),
+                SizedBox(height: 25,),
+                FillButton(text: 'Logout', onPressed: () async {
+                await  FirebaseAuth.instance.signOut();
+                CustomSnackbar(title: "Logged out successfully", context: context);
+                Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=>GetStarted()), (route) => false);
+                },),
                 SizedBox(
                   height: 25,
                 ),
