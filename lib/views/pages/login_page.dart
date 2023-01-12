@@ -103,7 +103,7 @@ class _LoginPageState extends State<LoginPage> {
                     onPressed: _getCurrentState
                         ? () {
                             if (_formkey.currentState!.validate()) {
-                              UserAuth().signIn(
+                              UserData().signIn(
                                   context: context,
                                   email: _email,
                                   password: _password);

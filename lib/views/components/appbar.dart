@@ -9,6 +9,7 @@ class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
   final double? elevation;
   final IconData? actionIcon, backLeadingIcon, imageLeadingIcon;
   final VoidCallback? onPressedBack, onPressedImage, onPressedAccount;
+  final bool? automaticallyImplyLeading;
 
   const CustomAppbar({
     Key? key,
@@ -21,7 +22,7 @@ class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
     this.imageLeadingIcon,
     this.onPressedBack,
     this.onPressedImage,
-    this.onPressedAccount,
+    this.onPressedAccount,  this.automaticallyImplyLeading,
   }) : super(key: key);
 
   @override
@@ -31,18 +32,16 @@ class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      automaticallyImplyLeading: automaticallyImplyLeading??true,
       foregroundColor: foregroundColor,
       elevation: elevation,
       //when used ledadingWidth > backLeading Icon not working
       // leadingWidth: 0,
       leading: onPressedBack != null
-          ? Padding(
-              padding: const EdgeInsets.only(left: 25),
-              child: IconButton(
-                onPressed: onPressedBack,
-                icon: Icon(backLeadingIcon),
-              ),
-            )
+          ? IconButton(
+            onPressed: onPressedBack,
+            icon: Icon(backLeadingIcon),
+          )
           : SizedBox(),
       title: Row(
         children: [

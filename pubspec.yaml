@@ -44,6 +44,12 @@ dependencies:
   page_transition:
   firebase_core:
   firebase_auth:
+  cloud_firestore:
+  firebase_storage:
+  intl:
+  uuid:
+
+
 
 dev_dependencies:
   flutter_test:

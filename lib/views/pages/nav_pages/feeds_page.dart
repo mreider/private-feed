@@ -32,9 +32,7 @@ class _FeedsPageState extends State<FeedsPage> {
       ),
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
-        child: Container(
-          child: FeedBuilder(),
-        ),
+        child: FeedBuilder(),
       ),
     );
   }

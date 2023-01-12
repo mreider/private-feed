@@ -111,7 +111,7 @@ String _email="", _password="";
                     text: 'Submit',
                     onPressed: _getCurrentState?() {
                       if(_formkey.currentState!.validate()){
-                       UserAuth().signUp(context: context, email: _email, password: _password);
+                       UserData().signUp(context: context, email: _email, password: _password);
                       }
                     }:null,
                     containerColor: AllColors.blue,
